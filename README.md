@@ -32,10 +32,22 @@ https://wikitech.wikimedia.org/wiki/Analytics/AQS/Pageviews
 https://wikimedia.org/api/rest_v1/#/Pageviews_data/get_metrics_pageviews_aggregate_project_access_agent_granularity_start_end  
 
 # All files and descriptions: 
-/Data/academy_monthly_cumulative_201501-202309 - JSON file storing mobile+desktop article viewcounts for each month    
-/Data/academy_monthly_desktop-202309 - JSON file storing desktop article viewcounts for each month  
-/Data/academy_monthly_mobile_201501-202309 - JSON file storing mobile article viewcounts for each month    
+/Data/academy_monthly_cumulative_201501-202309.json - JSON file storing mobile+desktop article viewcounts for each month    
+  * Format: List of lists, where each sublist is a dictionary. Each dictionary's key is the name of an article. The value of said dictionary is a dictionary with the key 'View', and the value again is a dictionary where each key and value is a pair of a month and its viewership. 
+  * Example: [["movie1" {"Views" {"2015070100": 138151, "2016070100": 12939}}], ["movie2" {"Views" {"2015070100": 9999}}]]
+
+/Data/academy_monthly_desktop-202309.json - JSON file storing desktop article viewcounts for each month  
+  * Format: List of lists, where each sublist is a dictionary. Each dictionary's key is the name of an article. The value of said dictionary is a dictionary with the key 'View', and the value again is a dictionary where each key and value is a pair of a month and its viewership. 
+  * Example: [["movie1"{"Views" {"2015070100": 138151}}]]
+
+/Data/academy_monthly_mobile_201501-202309.json - JSON file storing mobile article viewcounts for each month    
+  * Format: List of lists, where each sublist is a dictionary. Each dictionary's key is the name of an article. The value of said dictionary is a dictionary with the key 'View', and the value again is a dictionary where each key and value is a pair of a month and its viewership. 
+  * Example: [["movie1"{"Views" {"2015070100": 138151}}]]
+
 /Data/ArticleNames.csv - CSV file storing the name and url of 1359 wikipedia articles     
+  * Format: 1359 rows, where element1 is a string and element2 is a string, 
+  * Example: [Name, https://en.wikipedia.org/wiki/url]
+
 /Results/FewestMonths.png - Time series graph of the top 10 articles with the fewest amount of recorded months for both desktop and mobile     
 /Results/MinMaxAverages.png - Time series graph of the articles that have the highest and lowest average monthly viewership for both desktop and mobile.    
 /Results/PeakViewership.png - Timeseries graphs of the top 10 articles that have the highest peak viewership for both desktop and mobile.   
@@ -50,3 +62,11 @@ LICENSE - License file.
 1. Data must be URI encoded when sent to the Wikimedia API. For example the character '/' should be encoded as '%2F'.  
 2. Some months for articles have a viewership value of 0. In my case I included them in analysis, but it's ultimately up to you if you want them removed.  
 3. Some of the code for the use of the Wikimedia API is under the creative commons license.  
+
+# Automation next steps:
+* Create an anaconda development environment.
+* Create a shell script that does the following:
+1. Install python
+2. Install anaconda
+3. Download/install all project modules from conda environment
+4. Run the 'jupyter notebook' command
